@@ -128,7 +128,8 @@ def Qatnf(psr, Query=('RaJ', 'DecJ'), condition=None):
         data[Q]=Q
     url_values = urllib.urlencode(data)
     #data = {'ephemeris':'short', 'startUserDefined':'true','style':'Publication quality','sort_attr':'jname','sort_order':'asc'}
-    data = {'ephemeris':'short', 'startUserDefined':'true','style':'Long with last digit error','sort_attr':'jname','sort_order':'asc'}
+    #data = {'ephemeris':'short', 'startUserDefined':'true','style':'Long with last digit error','sort_attr':'jname','sort_order':'asc'}
+    data = {'ephemeris':'short', 'startUserDefined':'true','style':'Short without erros','sort_attr':'jname','sort_order':'asc'}
     url_values += '&'+urllib.urlencode(data)
     if condition:
         data = {'pulsar_names':psr, 'condition':condition}
