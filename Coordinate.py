@@ -28,7 +28,7 @@ class RA(object):
                 self.SS = (mm % 1)*60
                 self.SSuncertainty = self.uncertainty*60.*4.
             except ValueError:
-                pattern = re.compile('(?P<HH>\d\d)[:\s](?P<MM>\d\d)([:\s](?P<SS>\d\d\.*\d*)){0,1}')
+                pattern = re.compile('(?P<HH>\d\d)[:h\s](?P<MM>\d\d)([:m\s](?P<SS>\d\d\.*\d*)){0,1}s{0,1}')
                 match = pattern.search(value)
                 self.HH = int(match.group('HH'))
                 self.MM = int(match.group('MM'))
@@ -43,7 +43,7 @@ class RA(object):
         elif isinstance(value, (basestring,float,Decimal)):
             return RA.__init__(self, (value, 9))
     def __str__(self):
-        return '%s:%s:%s' % (self.HH,self.MM,self.SS)
+        return '%sh%sm%ss' % (self.HH,self.MM,self.SS)
 class Dec(object):
     def __init__(self, value):
         if isinstance(value, (tuple, list)):
@@ -66,7 +66,7 @@ class Dec(object):
                 self.ss = (mm % 1)*60
                 self.SSuncertainty = self.uncertainty*60.*60
             except ValueError:
-                pattern = re.compile('(?P<sign>-*\+*)(?P<dd>\d\d)[:\s](?P<mm>\d\d)([:\s](?P<ss>\d\d\.*\d*)){0,1}')
+                pattern = re.compile('(?P<sign>-*\+*)(?P<dd>\d\d)[:d\s](?P<mm>\d\d)([:m\s](?P<ss>\d\d\.*\d*)){0,1}s{0,1}')
                 match = pattern.search(value)
                 self.sign = str(match.group('sign'))
                 self.dd = int(match.group('dd'))
@@ -86,7 +86,7 @@ class Dec(object):
         elif isinstance(value, (basestring,float,Decimal)):
             return Dec.__init__(self, (value, 9))
     def __str__(self):
-        return '%s%s:%s:%s' % (self.sign,self.dd,self.mm,self.ss)
+        return '%s%sd%sm%ss' % (self.sign,self.dd,self.mm,self.ss)
 
 
 
