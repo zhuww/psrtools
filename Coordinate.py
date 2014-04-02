@@ -28,7 +28,7 @@ class RA(object):
                 self.SS = (mm % 1)*60
                 self.SSuncertainty = self.uncertainty*60.*4.
             except ValueError:
-                pattern = re.compile('(?P<HH>\d\d)[:h\s](?P<MM>\d\d)([:m\s](?P<SS>\d\d\.*\d*)){0,1}s{0,1}')
+                pattern = re.compile('(?P<HH>\d{1,2})[:h\s](?P<MM>\d\d)([:m\s](?P<SS>\d\d\.*\d*)){0,1}s{0,1}')
                 match = pattern.search(value)
                 self.HH = int(match.group('HH'))
                 self.MM = int(match.group('MM'))
